@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { APP_CONFIG, paymentMethods } from './Constants'
 class  storage{
 
    constructor(){

@@ -1,14 +1,19 @@
-import React,{useState, useDispatch, useNavigate} from 'react'
+import React,{useState} from 'react'
+import { useDispatch } from "react-redux";
+
+import { useNavigate} from 'react-router-dom'
 import {api} from '../../services/API'
 import { APP_CONFIG, paymentMethods } from '../../services/Constants'
-
+import {storeageUtil} from '../../store/localStorage/local'
+import { setMessages } from '../../store/Redux/MessageReducers'
 
 function SignInForm() {
 
   const [values, setValues] = useState({})
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handleChangeEvent = (key, value) => {
-
     setValues({
       ...values,
       [key]: value,
@@ -16,12 +21,17 @@ function SignInForm() {
   }
   const  loginEvent = async () => {
     const result = await api.get("/auth")
+    let message ={}
 
     if(result.status === 200){
-       console.log(result.status)
-       console.log(result)
+       storeageUtil.setItem("user", JSON.stringify(result.data))
+        message ={success:'Successfully logged in ',  error: '', category:true}
+       dispatch(setMessages(message))
+       navigate("/")
     }else{
-      
+      const message ={success:'',  error: "Error occured: " + result.status, category:false}
+      dispatch(setMessages(message))
+     
     }
 
   }

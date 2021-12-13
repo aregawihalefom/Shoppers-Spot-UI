@@ -27,6 +27,7 @@ function SignInForm() {
        storeageUtil.setItem("username", result.data.data.user.username)
        storeageUtil.setItem("token", result.data.data.user.token)
        storeageUtil.setItem("role", result.data.data.user.roles[0])
+       storeageUtil.setItem("id", result.data.data.user.id)
        api.setHeader(result.data.data.user.token)
        message ={success:'Successfully logged in ',  error: '', category:true}
        dispatch(setMessages(message))

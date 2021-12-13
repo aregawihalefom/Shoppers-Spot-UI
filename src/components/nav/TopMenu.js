@@ -8,7 +8,7 @@ const TopMenu = () => {
       <>
       <nav className="navbar navbar-expand-lg  p-0">
         <div className="container">
-    
+
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav">
              <AdminMenu/>
@@ -18,12 +18,7 @@ const TopMenu = () => {
           </div>
         </div>
       </nav>
-
-
-
       </>
-    
-
     </React.Fragment>
   );
 };

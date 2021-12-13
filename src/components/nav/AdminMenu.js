@@ -5,7 +5,7 @@ function AdminMenu() {
     return (
         <>
              <li className="nav-item">
-                <Link className="nav-link" to="/category">
+                <Link className="nav-link" to="/users/sellers">
                   Sellers
                 </Link>
               </li>

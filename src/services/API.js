@@ -19,7 +19,7 @@ class API {
     }
 
     put(resource, payload) {
-        return this.axios_instance.post(resource, payload)
+        return this.axios_instance.put(resource, payload)
     }
 
     delete(resource) {

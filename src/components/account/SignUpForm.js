@@ -1,126 +1,102 @@
-import React from "react";
-import { Field, reduxForm } from "redux-form";
-import { compose } from "redux";
-import { Link } from "react-router-dom";
-import renderFormGroupField from "../../helpers/renderFormGroupField";
-import renderFormField from "../../helpers/renderFormField";
-import {
-  required,
-  maxLength20,
-  minLength8,
-  maxLengthMobileNo,
-  minLengthMobileNo,
-  digit,
-  name,
-} from "../../helpers/validation";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTwitter,
-  faFacebookF,
-  faGoogle,
-} from "@fortawesome/free-brands-svg-icons";
-import { ReactComponent as IconPhoneFill } from "bootstrap-icons/icons/phone-fill.svg";
-import { ReactComponent as IconShieldLockFill } from "bootstrap-icons/icons/shield-lock-fill.svg";
+import React, { useState } from 'react'
+import { useDispatch } from "react-redux";
 
-const SignUpForm = (props) => {
-  const { handleSubmit, submitting, onSubmit, submitFailed } = props;
+import { useNavigate } from 'react-router-dom'
+import { api } from '../../services/API'
+import { APP_CONFIG, paymentMethods } from '../../services/Constants'
+import { storeageUtil } from '../../store/localStorage/local'
+import { setMessages } from '../../store/Redux/MessageReducers'
+
+function SignUpForm() {
+
+  const [values, setValues] = useState({})
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const handleChangeEvent = (key, value) => {
+    setValues({
+      ...values,
+      [key]: value,
+    });
+    console.log(values)
+  }
+  const registerEvent = async () => {
+    const result = await api.post("/auth/signup", values)
+    let message = {}
+    if (result.status === 200) {
+      storeageUtil.setItem("user", JSON.stringify(result.data))
+      message = { success: 'User Successfully registered ', error: '', category: true }
+      dispatch(setMessages(message))
+      navigate("/")
+    } else {
+      const message = { success: '', error: "Error occured: " + result.status, category: false }
+      dispatch(setMessages(message))
+    }
+  }
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className={`needs-validation ${submitFailed ? "was-validated" : ""}`}
-      noValidate
-    >
-      <div className="row mb-3">
-        <div className="col-md-6">
-          <Field
-            name="firstName"
-            type="text"
-            label="First Name"
-            component={renderFormField}
-            placeholder="First Name"
-            validate={[required, name]}
-            required={true}
-          />
-        </div>
-        <div className="col-md-6">
-          <Field
-            name="lastName"
-            type="text"
-            label="Last Name"
-            component={renderFormField}
-            placeholder="Last Name"
-            validate={[required, name]}
-            required={true}
-          />
-        </div>
-      </div>
-      <Field
-        name="mobileNo"
-        type="number"
-        label="Mobile no"
-        component={renderFormGroupField}
-        placeholder="Mobile no without country code"
-        icon={IconPhoneFill}
-        validate={[required, maxLengthMobileNo, minLengthMobileNo, digit]}
-        required={true}
-        max="999999999999999"
-        min="9999"
-        className="mb-3"
-      />
-      <Field
-        name="password"
-        type="password"
-        label="Your password"
-        component={renderFormGroupField}
-        placeholder="******"
-        icon={IconShieldLockFill}
-        validate={[required, maxLength20, minLength8]}
-        required={true}
-        maxLength="20"
-        minLength="8"
-        className="mb-3"
-      />
-      <button
-        type="submit"
-        className="btn btn-primary btn-block mb-3"
-        disabled={submitting}
-      >
-        Create
-      </button>
-      <Link className="float-left" to="/account/signin" title="Sign In">
-        Sing In
-      </Link>
-      <Link
-        className="float-right"
-        to="/account/forgotpassword"
-        title="Forgot Password"
-      >
-        Forgot password?
-      </Link>
-      <div className="clearfix"></div>
-      <hr></hr>
+    <div>
       <div className="row">
-        <div className="col- text-center">
-          <p className="text-muted small">Or you can join with</p>
+        <hr />
+        <div className="col-4">
         </div>
-        <div className="col- text-center">
-          <Link to="/" className="btn text-white bg-twitter mr-3">
-            <FontAwesomeIcon icon={faTwitter} />
-          </Link>
-          <Link to="/" className="btn text-white mr-3 bg-facebook">
-            <FontAwesomeIcon icon={faFacebookF} className="mx-1" />
-          </Link>
-          <Link to="/" className="btn text-white mr-3 bg-google">
-            <FontAwesomeIcon icon={faGoogle} className="mx-1" />
-          </Link>
+        <div className="col-4">
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title text-center text-primary text-uppercase">Registration Form</h5>
+              <hr />
+              <div className="form-group mt-3">
+                <label htmlFor="fisrtName">First Name</label>
+                <input type="input" className="form-control mt-2" id="fisrtName" aria-describedby="firstNameHelp" placeholder="Enter firstname" onChange={(e) => handleChangeEvent("firstName", e.target.value)} />
+              </div>
+
+              <div className="form-group mt-3">
+                <label htmlFor="middleName">Middle Name</label>
+                <input type="input" className="form-control mt-2" id="middleName" aria-describedby="middleNameHelp" placeholder="Enter middlename" onChange={(e) => handleChangeEvent("middleName", e.target.value)} />
+              </div>
+
+              <div className="form-group mt-3">
+                <label htmlFor="lastName">Last Name</label>
+                <input type="input" className="form-control mt-2" id="lastName" aria-describedby="lastNameHelp" placeholder="Enter lastname" onChange={(e) => handleChangeEvent("lastName", e.target.value)} />
+              </div>
+
+              <div className="form-group mt-3">
+                <label htmlFor="exampleInputEmail1">Register as</label>
+                <select class="form-select mt-3" aria-label="Default select example" onChange={(e) => handleChangeEvent("role", [e.target.value])}>
+                  <option selected disabled>Select</option>
+                  <option value="seller">Seller</option>
+                  <option value="buyer">Buyer</option>
+                </select>
+              </div>
+
+              <div className="form-group mt-3">
+                <label htmlFor="exampleInputEmail1">Email address</label>
+                <input type="input" className="form-control mt-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={(e) => handleChangeEvent("email", e.target.value)} />
+              </div>
+
+              <div className="form-group mt-3">
+                <label htmlFor="username">Username</label>
+                <input type="input" className="form-control mt-2" id="username" aria-describedby="usernameHelp" placeholder="Enter username" onChange={(e) => handleChangeEvent("username", e.target.value)} />
+              </div>
+
+
+              <div className="form-group mt-3">
+                <label htmlFor="passwordd">Password</label>
+                <input type="password" className="form-control mt-2" id="password" aria-describedby="passwordHelp" placeholder="Enter password" onChange={(e) => handleChangeEvent("password", e.target.value)} />
+              </div>
+
+
+              <div className="form-group mt-3">
+                <label htmlFor="confirmPassword">Confirm Password</label>
+                <input type="password" className="form-control mt-2" id="confirmPassword" aria-describedby="confirmPasswordHelp" placeholder="Re-enter password" />
+              </div>
+
+              <button className="btn btn-primary mt-md-3" onClick={registerEvent}>Register</button>
+            </div>
+          </div>
         </div>
       </div>
-    </form>
-  );
-};
+    </div>
 
-export default compose(
-  reduxForm({
-    form: "signup",
-  })
-)(SignUpForm);
+  )
+}
+export default SignUpForm

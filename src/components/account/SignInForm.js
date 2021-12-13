@@ -20,7 +20,7 @@ function SignInForm() {
     });
   }
   const  loginEvent = async () => {
-    const result = await api.get("/auth")
+    const result = await api.post("/auth/signin", values)
     let message ={}
 
     if(result.status === 200){
@@ -47,8 +47,8 @@ function SignInForm() {
             <div className="card-body">
               <h5 className="card-title text-center text-primary text-uppercase">Login</h5>
                 <div className="form-group">
-                  <label htmlFor="exampleInputEmail1">Email address</label>
-                  <input type="input" className="form-control mt-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={(e)=>handleChangeEvent("email", e.target.value)}/>
+                  <label htmlFor="exampleInputEmail1">Username</label>
+                  <input type="input" className="form-control mt-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={(e)=>handleChangeEvent("username", e.target.value)}/>
                 </div>
                 <p>{""}</p>
                 <div className="form-group mt-lg-3">

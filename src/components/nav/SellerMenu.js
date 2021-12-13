@@ -5,18 +5,18 @@ function SellerMenu() {
     return (
         <>
               <li className="nav-item">
-                <Link className="nav-link" to="/category">
-                Admin LA
+                <Link className="nav-link" to="/sellers/products">
+                Manage Products
                 </Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/category">
-                 Admin LB
+                 Report
                 </Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/category">
-                  Seller LC
+
                 </Link>
               </li>
         </>

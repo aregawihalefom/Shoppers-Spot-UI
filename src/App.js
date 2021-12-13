@@ -6,18 +6,20 @@ import Header from './components/nav/Header';
 import React from 'react';
 import Footer from './components/nav/Footer';
 import RoutesFile from './components/routes/RoutesFile';
-import {api} from './services/API'
+import { api } from './services/API'
 
 function App() {
 
   return (
 
-      <React.Fragment>
-        <Header />
-        <TopMenu />
-        <RoutesFile/>
-        <Footer />
-      </React.Fragment>
+    <React.Fragment>
+      <Header />
+      <TopMenu />
+      <div className="container">
+        <RoutesFile />
+      </div>
+      <Footer />
+    </React.Fragment>
   );
 }
 

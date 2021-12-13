@@ -6,7 +6,6 @@ class API {
     constructor() {
         this.axios_instance = axios.create()
         this.axios_instance.defaults.baseURL = APP_CONFIG.data.API_BASE_URL
-        this.result = {}
     }
     setHeader(token) {
         this.axios_instance.defaults.headers.common['Authorization'] = "Bearer " + token;
@@ -27,9 +26,10 @@ class API {
         return this.axios_instance.delete(resource)
     }
 
-    getResult() {
-        return this.result;
+    deleteAuth(){
+        delete this.axios_instance.defaults.headers.common["Authorization"];
     }
+
 
 }
 export let api = new API()

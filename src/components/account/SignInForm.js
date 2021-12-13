@@ -20,12 +20,15 @@ function SignInForm() {
     });
   }
   const  loginEvent = async () => {
+    api.deleteAuth()
     const result = await api.post("/auth/signin", values)
     let message ={}
-
     if(result.status === 200){
-       storeageUtil.setItem("user", JSON.stringify(result.data))
-        message ={success:'Successfully logged in ',  error: '', category:true}
+       storeageUtil.setItem("username", result.data.data.user.username)
+       storeageUtil.setItem("token", result.data.data.user.token)
+       storeageUtil.setItem("role", result.data.data.user.roles[0])
+       api.setHeader(result.data.data.user.token)
+       message ={success:'Successfully logged in ',  error: '', category:true}
        dispatch(setMessages(message))
        navigate("/")
     }else{

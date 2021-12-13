@@ -10,7 +10,7 @@ class  storage{
   }
   
    getItem = (key) => {
-     return   this.storageType.getItem(key)
+     return   JSON.parse(this.storageType.getItem(key))
   }
   
    clearStorage = () =>{ 

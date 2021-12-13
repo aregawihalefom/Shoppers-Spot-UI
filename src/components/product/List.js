@@ -27,7 +27,6 @@ function ProductListView() {
       <div className="container mb-3">
         <div className="row">
 
-          <hr />
           <div className="col-md-3">
 
             <FilterCategory />
@@ -35,8 +34,6 @@ function ProductListView() {
 
           </div>
           <div className="col-md-9">
-
-            <hr />
             <div className="row g-3">
               <SingleProduct />
             </div>

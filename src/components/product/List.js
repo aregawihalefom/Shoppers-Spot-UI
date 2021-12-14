@@ -1,30 +1,31 @@
 import React from 'react'
 import { data } from "../../data";
-import useState from 'react'
+import {useState, useEffect} from 'react'
 
 import FilterPrice from "../filter/Price";
 import FilterCategory from "../filter/Category";
 import SingleProduct from "./SingleProduct";
+import axios from 'axios';
+import { api } from '../../services/API';
+import { storeageUtil } from '../../store/localStorage/local';
 
 function ProductListView() {
 
-  //slet [data, setData] = useState({})
+  let [data, setData] = useState([])
+
+  useEffect(() => {
+   
+    api.setHeader(storeageUtil.getItem('token'))
+    api.get("/products")
+    .then(result=>{
+      setData(result.data)
+    })
+
+  }, [])
 
   return (
     <div>
-      <div
-        className="p-5 bg-primary bs-cover"
-        style={{
-          backgroundImage: "url(../../images/banner/50-Banner.webp)",
-        }}
-      >
-        <div className="container text-center">
-          <span className="display-5 px-3 bg-white rounded shadow">
-            T-Shirts
-          </span>
-        </div>
-      </div>
-      <div className="container mb-3">
+      <div className="container mt-5">
         <div className="row">
 
           <div className="col-md-3">
@@ -35,7 +36,11 @@ function ProductListView() {
           </div>
           <div className="col-md-9">
             <div className="row g-3">
-              <SingleProduct />
+              {
+                data.map((product)=>{
+                  return( <SingleProduct  key = {product.id} product = {product}/>
+                )})
+              }
             </div>
           </div>
         </div>

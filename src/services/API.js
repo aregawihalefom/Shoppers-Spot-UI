@@ -8,7 +8,7 @@ class API {
         this.axios_instance.defaults.baseURL = APP_CONFIG.data.API_BASE_URL
     }
     setHeader(token) {
-        this.axios_instance.defaults.headers.common['Authorization'] = "Bearer " + token;
+        this.axios_instance.defaults.headers.common['Authorization'] = "Bearer "+token;
     }
      get(resource) {
         return this.axios_instance.get(resource);

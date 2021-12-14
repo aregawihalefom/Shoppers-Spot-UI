@@ -1,18 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function SingleProduct() {
+function SingleProduct(props) {
+
+    const {product} = props
+    console.log("Popos", props)
+
     return (
 
         <div className="col-md-4">
             <div className="card">
-               <Link to="/product/details/:id"> <img src="../../images/products/tshirt_red_480x400.webp" className="card-img-top" alt="..."></img></Link>
+               <Link to="/product/details/:id"> <img src={product.banner} className="card-img-top" alt="..."></img></Link>
                 <span className="badge bg-success position-absolute mt-2 ml-2">New</span>
                 <div className="card-body"><h6 className="card-subtitle mb-2">
-                    <a className="text-decoration-none" href="/product/detail">T-Shirt</a>
+                    <a className="text-decoration-none" href="/product/detail">{product.name}</a>
                 </h6><div className="my-2">
-                        <span className="font-weight-bold h5">$180</span>
-                        <del className="small text-muted ml-2">$200</del>
+                        <span className="font-weight-bold h5">${product.price}</span>
                     </div>
                 </div>
                 <div className="btn-group" role="group" aria-label="Basic example">

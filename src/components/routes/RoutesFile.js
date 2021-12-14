@@ -16,7 +16,6 @@ function RoutesFile() {
                 <Route exact path="/account/signin" element={<SignInForm />} />
                 <Route exact path="/account/signup" element={<SignUpForm />} />
                 <Route exact path="/" element={<Home />} />
-
                 {/* Product related routes */}
 
                 <Route exact path='/sellers/products' element= {<AddProduct/>}/>
@@ -25,10 +24,7 @@ function RoutesFile() {
 
                 {/* Admin routes */}
                 <Route exact path='/users/sellers' element={<ListSellers/>}/>
-
             </Routes>
-
-
         </div>
     )
 }

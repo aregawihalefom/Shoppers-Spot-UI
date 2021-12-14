@@ -1,7 +1,6 @@
 import axios from 'axios'
-import { APP_CONFIG, paymentMethods } from './Constants'
+import { APP_CONFIG } from './Constants'
 class API {
-
 
     constructor() {
         this.axios_instance = axios.create()

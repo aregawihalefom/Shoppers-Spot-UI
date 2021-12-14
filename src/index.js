@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.js';
 import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from 'react-redux';
 import store from './store/Redux/store'
+
+import Popper from 'popper.js';
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap';
+
 
 
 ReactDOM.render(

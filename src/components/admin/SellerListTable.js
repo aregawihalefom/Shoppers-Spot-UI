@@ -8,7 +8,6 @@ function SellerListTable(props) {
 
     return (
         <div>
-            
             <table className="table table-hover table-striped ">
                         <thead>
                             <tr>

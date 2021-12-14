@@ -55,7 +55,8 @@ function EditProduct() {
         }
     }
 
-    const creatForm = <div className="card">
+    const creatForm = ()=>{
+        <div className="card">
         <div className="card-body">
             <h5 className="card-title text-center text-primary text-uppercase">Add Product for Sell </h5>
             <hr />
@@ -112,6 +113,7 @@ function EditProduct() {
             <button className="btn btn-primary mt-md-3" onClick={submitEdit}>Save Changes</button>
         </div>
     </div>
+    }
 
     return (
         <div>

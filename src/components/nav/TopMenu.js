@@ -7,15 +7,15 @@ import { APP_CONFIG } from './../../services/Constants';
 
 const TopMenu = () => {
 
-
   const role = storeageUtil.getItem(APP_CONFIG.data.ROLE) || ''
   const [filteredRoutes, setFilteredRoutes] = useState([])
+
 
   useEffect(() => {
     const filtered = routes.filter(route => {
       if (route.roles.includes(role.toLowerCase())) {
         const metaName = route.path.split('/').slice(-1)[0]
-        return true
+        return true //routeAccess[user.roles[0].toLowerCase()].includes(metaName)
       }
       return false
     })
@@ -30,12 +30,20 @@ const TopMenu = () => {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav">
 
-                {filteredRoutes.map(route =>
-                  <li className="nav-item" key={route.id}>
-                    <Link
-                      className="nav-link" to={route.path}>{route.name}
-                    </Link>
-                  </li>)}
+                {filteredRoutes.map(route => {
+
+                  return (
+                  < div key = {route.id}>
+                    <li className="nav-item" key={route.id}>
+                      <Link
+                        className="nav-link" to={route.path}>{route.name}
+                      </Link>
+                    </li>
+                  </div>
+                  )
+
+                })}
+
               </ul>
             </div>
           </div>

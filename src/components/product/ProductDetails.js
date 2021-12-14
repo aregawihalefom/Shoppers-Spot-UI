@@ -3,23 +3,13 @@
 
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from "react-redux";
-
 import { useNavigate } from 'react-router-dom'
 import { api } from '../../services/API'
-import { APP_CONFIG, paymentMethods } from '../../services/Constants'
 import { storeageUtil } from '../../store/localStorage/local'
-import { setMessages } from '../../store/Redux/MessageReducers'
 import { useParams } from 'react-router'
-import { data } from 'jquery';
-
 function EditProduct() {
 
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
-
     const [product, setProduct] = useState({ id: '', name: '', description: '', sku: '', price: '', quantity: '', banner: '' });
-
-
     const params = useParams()
     const id = params.id;
 

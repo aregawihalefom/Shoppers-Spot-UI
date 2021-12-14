@@ -8,23 +8,21 @@ import { APP_CONFIG } from "../../services/Constants";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
-import CardHeader from "react-bootstrap/esm/CardHeader";
-import FilterPrice from "../filter/Price";
+import {useSelector, useDispatch} from 'react-redux'
 
 
 const Header = () => {
 
+  // The following data is from localstorage
   let counter = 0
   let cartData = storeageUtil.getItem(APP_CONFIG.data.CART_DATA)
   counter = cartData == null ? counter : cartData.length
+  
 
-  const navigate = useNavigate()
-
-  const logout = () => {
-    storeageUtil.clearStorage()
-    navigate("/shop")
-  }
-
+  //The following data is from redux store
+  const dispatch = useDispatch()
+  const cartDataStore  = useSelector(state => state.cart)
+  
   const token = storeageUtil.getItem(APP_CONFIG.data.TOKEN_NAME);
   const username = storeageUtil.getItem(APP_CONFIG.data.USER_NAME)
 
@@ -45,6 +43,18 @@ const Header = () => {
   function capitalize(word) {
     const lower = word.toLowerCase();
     return word.charAt(0).toUpperCase() + lower.slice(1);
+  }
+
+  const navigate = useNavigate()
+
+  const checkout = () => {
+    console.log("We are checking out")
+    navigate('/shop/orders/checkout')
+}
+  
+  const logout = () => {
+    storeageUtil.clearStorage()
+    navigate("/shop")
   }
 
   const loggedIn = () => {
@@ -95,24 +105,23 @@ const Header = () => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu >
-                  <div class="card">
-                    <div class="card-header text-success">
+                  <div className="card">
+                    <div className="card-header text-success">
                       Inside your cart
                     </div>
-                    <div class="card-body">
+                    <div className="card-body">
 
                       {
                         counter == 0 ? 'Your cart is empty' : <div>
                           {cartData.map((product) =>
-                            <div>
-                              <h5 class="card-title">{product.name}</h5>
-                              <p class="card-text">Quantity : {product.quantity}</p>
+                            <div key= {product.id}>
+                              <h5 className="card-title">{product.name}</h5>
+                              <p className="card-text">Quantity : {product.quantity}</p>
                               <p className="card-text">Price : {product.price}</p>
-                              <hr />
+                              <hr/>
                             </div>
-
                           )}
-                          <button className="btn btn-success" onClick={()=>console.log("do this part tomorrow")}>checkout</button>
+                          <button className="btn btn-success" onClick={checkout}>Checkout</button>
                         </div>
                       }
 

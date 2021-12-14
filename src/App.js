@@ -1,12 +1,10 @@
 import './App.css';
-
 import Home from './components/Home'
 import TopMenu from './components/nav/TopMenu';
 import Header from './components/nav/Header';
 import React from 'react';
 import Footer from './components/nav/Footer';
-import RoutesFile from './components/routes/RoutesFile';
-import { api } from './services/API'
+
 import routes from './components/routes'
 import { useRoutes } from 'react-router';
 import { storeageUtil} from './store/localStorage/local'
@@ -15,6 +13,7 @@ function App() {
 
 
   const loggedIn = storeageUtil.getItem(APP_CONFIG.data.TOKEN_NAME)
+  const role = storeageUtil.getItem(APP_CONFIG.data.ROLE)
   const routing = useRoutes(routes(loggedIn))
   return (
 
@@ -23,7 +22,6 @@ function App() {
       <TopMenu />
       <div className="container">
         {routing}
-        {/* <RoutesFile /> */}
       </div>
       <Footer />
     </React.Fragment>

@@ -8,27 +8,40 @@ export const routes = [
 
     {
         id: 1,
-        name: 'Manage Product',
+        name: 'Manage Products',
         path: '/shop/products/add-product',
         roles: ['seller']
     },
     {
         id: 2,
-        name: 'Mananage Product',
+        name: '',
         path: '/shop/products/edit',
         roles: ['seller']
         
     },
     {
-        id: 1,
-        name: 'Manage Product',
+        id: 3,
+        name: '',
         path: '/shop/products/detail',
         roles: ['seller']
     },
+    {
+        id:4,
+        name:'Manage Sales',
+        path: '/shop/seller/report',
+        roles:['seller']
+    },
+    {
+        id:5,
+        name:'',
+        path: '/shop/orders/checkout',
+        roles:['buyer']
+    }
+
 ]
 
-// export const routeAccess = {
-//     admin: ['sellers', 'products'],
-//     buyer: ['order', 'products'],
-//     seller: ['/products/edit/','add-product'],
-// }
+export const routeAccess = {
+    admin: ['sellers', 'products'],
+    buyer: ['order', 'products'],
+    seller: ['/products/edit/','add-product'],
+}

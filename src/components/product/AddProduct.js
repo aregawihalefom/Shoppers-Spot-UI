@@ -53,13 +53,11 @@ function AddProduct() {
     const id = params.id;
 
     const editProduct = (id) => {
-        navigate('/products/edit/'+id)
+        navigate('/shop/products/edit/'+id)
     }
 
     const showDetails = (id) => {
-
-        navigate('/products/details/'+id)
-  
+        navigate('/shop/products/detail/'+id)
     }
 
     const [editMode, setEditMode] = useState(false)

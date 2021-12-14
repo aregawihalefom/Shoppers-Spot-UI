@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { act } from "react-dom/test-utils";
 
 
 const initialState = {
@@ -12,8 +13,7 @@ export const cartSlice = createSlice({
     reducers:{
 
         addingItem: (state, action)=>{
-           return [...state, action.payload ] 
-
+            state.items = action.payload
         },
         removeItem:(state, action)=>{
             return []

@@ -8,6 +8,7 @@ import ListSellers from '../admin/ListSellers';
 import Home from '../Home';
 import RoutesFile from './RoutesFile'
 import { Navigate } from 'react-router';
+import CheckoutContainer from '../cart/checkout';
 
 const routes = (loggedIn) => [
     {
@@ -16,10 +17,10 @@ const routes = (loggedIn) => [
       children: [
         { path: 'sellers', element: <ListSellers /> },
         { path: 'home', element: <Home /> },
-        { path: 'add-product', element: <AddProduct /> },
+        { path: 'products/add-product', element: <AddProduct /> },
         { path: 'products/edit/:id', element: <EditProduct /> },
         { path: 'products/detail/:id', element: <ProductDetails /> },
-        // { path: 'carts', element: <CartContainer /> },
+        { path: 'orders/checkout', element: <CheckoutContainer /> },
         // { path: 'add-buyer', element: <AddBuyer /> },
         // { path: 'add-seller', element: <AddSeller /> },
         // { path: 'add-product', element: <AddProduct /> },

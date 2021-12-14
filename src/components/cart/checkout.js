@@ -31,6 +31,23 @@ function CheckoutContainer() {
         console.log(useShippingAsBilling)
     }
 
+    const [billingState, setBillingState] = useState({})
+    const [shippingState, setShippingState] = useState({})
+
+    const handleShippingForm = (key, value) => {
+        setShippingState({
+            ...shippingState,
+            [key]: value,
+        });
+    }
+
+    const handleBillingForm = (key, value) => {
+        setBillingState({
+            ...billingState,
+            [key]: value,
+        });
+    }
+
 
 
     return (

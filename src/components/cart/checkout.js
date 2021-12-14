@@ -39,6 +39,7 @@ function CheckoutContainer() {
             ...shippingState,
             [key]: value,
         });
+        console.log(shippingState)
     }
 
     const handleBillingForm = (key, value) => {
@@ -46,10 +47,8 @@ function CheckoutContainer() {
             ...billingState,
             [key]: value,
         });
+        console.log(billingState)
     }
-
-
-
     return (
         <div className="row">
             <div className="col-md-6">
@@ -59,27 +58,27 @@ function CheckoutContainer() {
                         <hr />
                         <div className="form-group mt-3">
                             <label htmlFor="address1">Address 1</label>
-                            <input type="input" className="form-control mt-2" id="address1" aria-describedby="address1Help" placeholder="Enter street" onChange={(e) => handleChangeEvent("address1", e.target.value)} />
+                            <input type="input" className="form-control mt-2" id="address1" aria-describedby="address1Help" placeholder="Enter street" onChange={(e) => handleShippingForm("address1", e.target.value)} />
                         </div>
 
                         <div className="form-group mt-3">
                             <label htmlFor="address1">Address 2</label>
-                            <input type="input" className="form-control mt-2" id="address2" aria-describedby="address2Help" placeholder="Apt, Blg .." onChange={(e) => handleChangeEvent("address2", e.target.value)} />
+                            <input type="input" className="form-control mt-2" id="address2" aria-describedby="address2Help" placeholder="Apt, Blg .." onChange={(e) => handleShippingForm("address2", e.target.value)} />
                         </div>
 
                         <div className="form-group mt-3">
                             <label htmlFor="city">City</label>
-                            <input type="input" className="form-control mt-2" id="city" aria-describedby="cityHelp" placeholder="Enter city" onChange={(e) => handleChangeEvent("city", e.target.value)} />
+                            <input type="input" className="form-control mt-2" id="city" aria-describedby="cityHelp" placeholder="Enter city" onChange={(e) => handleShippingForm("city", e.target.value)} />
                         </div>
 
                         <div className="form-group mt-3">
                             <label htmlFor="state">State</label>
-                            <input type="input" className="form-control mt-2" id="state" aria-describedby="stateHelp" placeholder="Enter state" onChange={(e) => handleChangeEvent("state", e.target.value)} />
+                            <input type="input" className="form-control mt-2" id="state" aria-describedby="stateHelp" placeholder="Enter state" onChange={(e) => handleShippingForm("state", e.target.value)} />
                         </div>
 
                         <div className="form-group mt-3">
                             <label htmlFor="zip">Zip </label>
-                            <input type="input" className="form-control mt-2" id="zip" aria-describedby="zip" placeholder="Enter zip code" onChange={(e) => handleChangeEvent("zip", e.target.value)} />
+                            <input type="input" className="form-control mt-2" id="zip" aria-describedby="zip" placeholder="Enter zip code" onChange={(e) => handleShippingForm("zip", e.target.value)} />
                         </div>
                         <hr />
                         <h5 className="card-title text-center text-primary text-uppercase">Billing Address </h5>
@@ -96,27 +95,27 @@ function CheckoutContainer() {
                              <hr />
                              <div className="form-group mt-3">
                                  <label htmlFor="address1">Address 1</label>
-                                 <input type="input" className="form-control mt-2" id="address1" aria-describedby="address1Help" placeholder="Enter street" onChange={(e) => handleChangeEvent("address1", e.target.value)} />
+                                 <input type="input" className="form-control mt-2" id="address1" aria-describedby="address1Help" placeholder="Enter street" onChange={(e) => handleBillingForm("address1", e.target.value)} />
                              </div>
              
                              <div className="form-group mt-3">
                                  <label htmlFor="address1">Address 2</label>
-                                 <input type="input" className="form-control mt-2" id="address2" aria-describedby="address2Help" placeholder="Apt, Blg .." onChange={(e) => handleChangeEvent("address2", e.target.value)} />
+                                 <input type="input" className="form-control mt-2" id="address2" aria-describedby="address2Help" placeholder="Apt, Blg .." onChange={(e) => handleBillingForm("address2", e.target.value)} />
                              </div>
              
                              <div className="form-group mt-3">
                                  <label htmlFor="city">City</label>
-                                 <input type="input" className="form-control mt-2" id="city" aria-describedby="cityHelp" placeholder="Enter city" onChange={(e) => handleChangeEvent("city", e.target.value)} />
+                                 <input type="input" className="form-control mt-2" id="city" aria-describedby="cityHelp" placeholder="Enter city" onChange={(e) => handleBillingForm("city", e.target.value)} />
                              </div>
              
                              <div className="form-group mt-3">
                                  <label htmlFor="state">State</label>
-                                 <input type="input" className="form-control mt-2" id="state" aria-describedby="stateHelp" placeholder="Enter state" onChange={(e) => handleChangeEvent("state", e.target.value)} />
+                                 <input type="input" className="form-control mt-2" id="state" aria-describedby="stateHelp" placeholder="Enter state" onChange={(e) => handleBillingForm("state", e.target.value)} />
                              </div>
              
                              <div className="form-group mt-3">
                                  <label htmlFor="zip">Zip </label>
-                                 <input type="input" className="form-control mt-2" id="zip" aria-describedby="zip" placeholder="Enter zip code" onChange={(e) => handleChangeEvent("zip", e.target.value)} />
+                                 <input type="input" className="form-control mt-2" id="zip" aria-describedby="zip" placeholder="Enter zip code" onChange={(e) => handleBillingForm("zip", e.target.value)} />
                              </div>
              
                          </div>

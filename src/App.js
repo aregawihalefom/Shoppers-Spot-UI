@@ -7,16 +7,23 @@ import React from 'react';
 import Footer from './components/nav/Footer';
 import RoutesFile from './components/routes/RoutesFile';
 import { api } from './services/API'
-
+import routes from './components/routes'
+import { useRoutes } from 'react-router';
+import { storeageUtil} from './store/localStorage/local'
+import { APP_CONFIG } from './services/Constants';
 function App() {
 
+
+  const loggedIn = storeageUtil.getItem(APP_CONFIG.data.TOKEN_NAME)
+  const routing = useRoutes(routes(loggedIn))
   return (
 
     <React.Fragment>
       <Header />
       <TopMenu />
       <div className="container">
-        <RoutesFile />
+        {routing}
+        {/* <RoutesFile /> */}
       </div>
       <Footer />
     </React.Fragment>

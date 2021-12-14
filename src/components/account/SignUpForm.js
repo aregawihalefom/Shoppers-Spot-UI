@@ -61,8 +61,8 @@ function SignUpForm() {
 
               <div className="form-group mt-3">
                 <label htmlFor="exampleInputEmail1">Register as</label>
-                <select class="form-select mt-3" aria-label="Default select example" onChange={(e) => handleChangeEvent("role", [e.target.value])}>
-                  <option selected disabled>Select</option>
+                <select className="form-select mt-3" aria-label="Default select example" onChange={(e) => handleChangeEvent("role", [e.target.value])}>
+                  <option defaultValue disabled>Select</option>
                   <option value="seller">Seller</option>
                   <option value="buyer">Buyer</option>
                 </select>

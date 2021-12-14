@@ -34,9 +34,8 @@ function AddProduct() {
     }
 
     const addProduct = async () => {
-        console.log(storeageUtil.getItem("id"))
-        console.log(storeageUtil.getItem("token"))
-        api.setHeader(storeageUtil.getItem("token"))
+      
+        api.setHeader(storeageUtil.getItem(APP_CONFIG.data.TOKEN_NAME))
         const result = await api.post("/users/sellers/"+storeageUtil.getItem("id"), values)
         let message = {}
         if (result.status === 200) {

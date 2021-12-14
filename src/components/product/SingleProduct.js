@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import {useSelector} from 'react-redux'
+import {storeageUtil} from '../../store/localStorage/local'
+import {APP_CONFIG} from '../../services/Constants'
 
 function SingleProduct(props) {
     const {product} = props
@@ -8,7 +10,22 @@ function SingleProduct(props) {
     const state = useSelector(state => state.cart)
 
     const addToCart = (product) => {
-        console.log(product)
+
+        let stored = []
+
+        // Read
+        let read = storeageUtil.getItem(APP_CONFIG.data.CART_DATA);
+  
+        stored = read === null ? stored  : read
+
+        // append
+        stored = [...stored, product]
+        
+        // save back
+        storeageUtil.setItem(APP_CONFIG.data.CART_DATA, stored)
+    
+        // Storage
+        console.log(storeageUtil.getItem(APP_CONFIG.data.CART_DATA))
     }
 
     const  addToWishList = (product) => {

@@ -8,7 +8,7 @@ import { APP_CONFIG } from "../../services/Constants";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
-import {useSelector, useDispatch} from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 
 const Header = () => {
@@ -20,7 +20,7 @@ const Header = () => {
 
   //The following data is from redux store
   const dispatch = useDispatch()
-  const cartDataStore  = useSelector(state => state.cart)
+  const cartDataStore = useSelector(state => state.cart)
 
   // The
   const [token, setToken] = useState(null)
@@ -31,7 +31,7 @@ const Header = () => {
     setUsername(storeageUtil.getItem(APP_CONFIG.data.USER_NAME))
   }, [token, username])
 
-  
+
   const guest = () => {
     return (
       <div className="col-md-2">
@@ -54,8 +54,8 @@ const Header = () => {
 
   const checkout = () => {
     navigate('/shop/orders/checkout')
-}
-  
+  }
+
   const logout = () => {
     storeageUtil.clearStorage()
     setToken(null)
@@ -71,11 +71,11 @@ const Header = () => {
 
           <div className="col-6 ">
             ({capitalize(username)})
-            <FontAwesomeIcon icon={solid('user')} size="2x" className="text-primary" />
+            <FontAwesomeIcon icon={solid('user')} size="1x" className="text-primary" />
           </div>
 
           <div className="col-6">
-            <FontAwesomeIcon icon={solid('power-off')} onClick={logout} size="2x" className="text-danger" />
+            <FontAwesomeIcon icon={solid('power-off')} onClick={logout} size="1x" className="text-danger" />
           </div>
 
         </div>
@@ -120,11 +120,11 @@ const Header = () => {
                       {
                         counter == 0 ? 'Your cart is empty' : <div>
                           {cartData.map((product) =>
-                            <div key= {product.id}>
+                            <div key={product.id}>
                               <h5 className="card-title">{product.name}</h5>
                               <p className="card-text">Quantity : {product.quantity}</p>
                               <p className="card-text">Price : {product.price}</p>
-                              <hr/>
+                              <hr />
                             </div>
                           )}
                           <button className="btn btn-success" onClick={checkout}>Checkout</button>

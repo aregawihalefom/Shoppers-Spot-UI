@@ -23,20 +23,17 @@ function SignInForm() {
 
 
   const loginEvent = () => {
-   
+
     api.deleteAuth()
     api.post("/auth/signin", values)
       .then((result) => {
-        let message = {}
         storeUser(result.data.data.user)
-        message = { success: 'Successfully logged in ', error: '', category: true }
-        dispatch(setMessages(message))
+        dispatch(setMessages({ message: 'Successfully logged in ', type: true }))
         navigate("/")
       })
     .catch(error=>{
-      const message ={success:'',  error: error.response.data.message , category:false}
+      const message ={message : error.response.data.message, type: false}
       dispatch(setMessages(message))
-      console.log(statusMessage)
     })
 
   }

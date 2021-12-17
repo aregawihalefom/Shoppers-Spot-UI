@@ -21,7 +21,7 @@ function App() {
       <Header />
       <TopMenu />
       {
-         message.cateogry ? <StatusMessageBoard message = {message}/> : ''
+         message.message !== null ? <StatusMessageBoard message = {message}/> : ''
       }
       <div className="container">
         {routing}

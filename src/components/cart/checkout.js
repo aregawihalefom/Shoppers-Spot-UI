@@ -48,7 +48,6 @@ function CheckoutContainer() {
     const submitOrder = () => {
         setBillingState(useShippingAsBilling ? shippingState : billingState)
         var payload = {billingAddress : billingState , shippingAddress: shippingState , products : cartData, username: username, cardPayment:cardPaymentState}
-        api.setHeader(token)
         api.post("/orders", payload)
         .then(result =>{
            navigate("/shop/orders")

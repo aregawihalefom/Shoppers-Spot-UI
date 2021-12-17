@@ -10,7 +10,6 @@ const TopMenu = () => {
   const [filteredRoutes, setFilteredRoutes] = useState([])
 
   useEffect(() => {  
-    console.log("Routes", routes)
     const filtered = routes.filter(route => {
       if (route.roles.includes(role.toLowerCase())) {
         const metaName = route.path.split('/').slice(-1)[0]

@@ -9,6 +9,7 @@ import { APP_CONFIG } from "../../services/Constants";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
 import { useSelector, useDispatch } from 'react-redux'
+import { api } from "../../services/API";
 
 
 const Header = () => {
@@ -58,6 +59,7 @@ const Header = () => {
 
   const logout = () => {
     storeageUtil.clearStorage()
+    api.deleteAuth()
     setToken(null)
     setUsername(null)
     navigate("/shop")

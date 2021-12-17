@@ -8,7 +8,6 @@ const initialState ={
 }
 
 export const messageSlice = createSlice({
-
     name:"message",
     initialState,
     reducers:{

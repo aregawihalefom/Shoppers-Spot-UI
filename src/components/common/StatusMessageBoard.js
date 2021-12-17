@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react'
+import {useSelector, useDispatch} from 'react-redux'
+import { setMessages } from '../../store/Redux/MessageReducers'
 
 function StatusMessageBoard({ message }) {
 
@@ -6,9 +8,13 @@ function StatusMessageBoard({ message }) {
     const success = "alert alert-success"
 
     const [showElement, setShowElement] = useState(true)
+    const dispatch = useDispatch()
+
     useEffect(() => {
         setTimeout(function () {
             setShowElement(false)
+            const message ={message : null, type: false}
+            dispatch(setMessages(message))
         }, 3000);
     },
         [])

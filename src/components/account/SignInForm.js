@@ -1,4 +1,3 @@
-import { data } from 'jquery';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { api } from '../../services/API'
@@ -9,7 +8,6 @@ import {useSelector, useDispatch} from 'react-redux'
 function SignInForm() {
 
   const statusMessage = useSelector(state => state.message)
-
   const [values, setValues] = useState({})
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -23,7 +21,6 @@ function SignInForm() {
 
 
   const loginEvent = () => {
-
     api.deleteAuth()
     api.post("/auth/signin", values)
       .then((result) => {

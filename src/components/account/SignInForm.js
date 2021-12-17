@@ -3,7 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import { api } from '../../services/API'
 import { storeageUtil } from '../../store/localStorage/local'
 import { setMessages } from '../../store/Redux/MessageReducers'
+import { storeUserDetails } from '../../store/Redux/userReducer'
 import {useSelector, useDispatch} from 'react-redux'
+import { APP_CONFIG } from "../../services/Constants";
+
 
 function SignInForm() {
 
@@ -35,11 +38,13 @@ function SignInForm() {
 
   }
   const storeUser = (user) => {
-    storeageUtil.setItem("username", user.username)
-    storeageUtil.setItem("token", user.token)
-    storeageUtil.setItem("role", user.roles[0])
-    storeageUtil.setItem("id", user.id)
-    api.setHeader(user.token)
+    storeageUtil.setItem(APP_CONFIG.data.USER_NAME, user.username)
+    storeageUtil.setItem(APP_CONFIG.data.TOKEN_NAME, user.token)
+    storeageUtil.setItem(APP_CONFIG.data.ROLE, user.roles[0])
+    storeageUtil.setItem(APP_CONFIG.data.ID, user.id)
+
+    dispatch(storeUserDetails(user))
+
   }
 
   return (

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Navigate, useNavigate } from 'react-router'
 import { api } from '../../services/API'
 import { APP_CONFIG } from '../../services/Constants'
 import { storeageUtil } from '../../store/localStorage/local'
@@ -44,6 +45,7 @@ function CheckoutContainer() {
         });
     }
     
+    const navigate = useNavigate()
 
     const submitOrder = () => {
         setBillingState(useShippingAsBilling ? shippingState : billingState)
@@ -51,7 +53,8 @@ function CheckoutContainer() {
         api.setHeader(token)
         api.post("/orders", payload)
         .then(result =>{
-            console.log(result.status)
+           navigate("/shop/orders")
+           storeageUtil.clearStorage()
         })
 
     }

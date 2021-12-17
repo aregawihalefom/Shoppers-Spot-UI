@@ -36,7 +36,13 @@ export const routes = [
         name:'',
         path: '/shop/orders/checkout',
         roles:['buyer']
-    }
+    },
+    {
+        id:6,
+        name:'',
+        path: '/shop/orders/myorders/details',
+        roles:['seller', "buyer"]
+    },
   
 
 ]

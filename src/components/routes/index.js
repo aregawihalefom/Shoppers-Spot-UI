@@ -10,6 +10,7 @@ import RoutesFile from './RoutesFile'
 import { Navigate } from 'react-router';
 import CheckoutContainer from '../cart/checkout';
 import OrderContainer from '../cart/OrderContainer';
+import OrderDetails from '../cart/OrderDetails';
 
 const routes = (loggedIn) => [
     {
@@ -23,6 +24,7 @@ const routes = (loggedIn) => [
         { path: 'products/detail/:id', element: <ProductDetails /> },
         { path: 'orders/checkout', element: <CheckoutContainer /> },
         { path: 'orders/myorders', element: <OrderContainer /> },
+        { path: 'orders/myorders/detail/:id', element: <OrderDetails /> },
         // { path: 'add-buyer', element: <AddBuyer /> },
         // { path: 'add-seller', element: <AddSeller /> },
         // { path: 'add-product', element: <AddProduct /> },

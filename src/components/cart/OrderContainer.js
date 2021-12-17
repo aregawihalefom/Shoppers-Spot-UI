@@ -27,14 +27,16 @@ function OrderContainer() {
     }, [])
 
 
-    const cancelOrder = (params) => {
+    const cancelOrder = (id) => {
         
+        api.delete("/orders"+id)
+        .then(res => console.log(res.data))
+
     }
 
     const showDetails = (id) =>{
-       navigate("/shop/orders/myorders/"+id)
+       navigate("/shop/orders/myorders/detail/"+id)
     }
-    
     return (
         <div className="mt-4">
             <hr/>
@@ -85,7 +87,7 @@ function OrderContainer() {
                                                 <td>
                                                     <div className="button-group">
                                                         <button className='btn btn-success' onClick={() => showDetails(order.id)}>Details</button> &nbsp;
-                                                        <button className='btn btn-warning' onClick={() => cancelOrder(order.id)}>Delete</button>
+                                                        <button className='btn btn-danger' onClick={() => cancelOrder(order.id)}>Cancel Order</button>
                                                     </div>
                                                 </td>
                                             </tr>

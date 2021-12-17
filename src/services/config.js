@@ -27,9 +27,9 @@ export const routes = [
     },
     {
         id:4,
-        name:'Manage Sales',
-        path: '/shop/seller/report',
-        roles:['seller']
+        name:'Orders',
+        path: '/shop/orders/myorders',
+        roles:['seller', "buyer"]
     },
     {
         id:5,
@@ -37,6 +37,7 @@ export const routes = [
         path: '/shop/orders/checkout',
         roles:['buyer']
     }
+  
 
 ]
 

@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 
 import { useNavigate } from 'react-router-dom'
 import { api } from '../../services/API'
-import { APP_CONFIG, paymentMethods } from '../../services/Constants'
 import { storeageUtil } from '../../store/localStorage/local'
 import { setMessages } from '../../store/Redux/MessageReducers'
 

@@ -1,11 +1,8 @@
 import React from 'react'
-import { data } from "../../data";
 import {useState, useEffect} from 'react'
-
 import FilterPrice from "../filter/Price";
 import FilterCategory from "../filter/Category";
 import SingleProduct from "./SingleProduct";
-import axios from 'axios';
 import { api } from '../../services/API';
 import { storeageUtil } from '../../store/localStorage/local';
 

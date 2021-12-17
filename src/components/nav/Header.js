@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Search from "./Search";
 import { ReactComponent as IconCart3 } from "bootstrap-icons/icons/cart3.svg";
@@ -17,16 +17,21 @@ const Header = () => {
   let counter = 0
   let cartData = storeageUtil.getItem(APP_CONFIG.data.CART_DATA)
   counter = cartData == null ? counter : cartData.length
-  
 
   //The following data is from redux store
   const dispatch = useDispatch()
   const cartDataStore  = useSelector(state => state.cart)
+
+  // The
+  const [token, setToken] = useState(null)
+  const [username, setUsername] = useState(null);
+
+  useEffect(() => {
+    setToken(storeageUtil.getItem(APP_CONFIG.data.TOKEN_NAME))
+    setUsername(storeageUtil.getItem(APP_CONFIG.data.USER_NAME))
+  }, [token, username])
+
   
-  const token = storeageUtil.getItem(APP_CONFIG.data.TOKEN_NAME);
-  const username = storeageUtil.getItem(APP_CONFIG.data.USER_NAME)
-
-
   const guest = () => {
     return (
       <div className="col-md-2">
@@ -48,12 +53,13 @@ const Header = () => {
   const navigate = useNavigate()
 
   const checkout = () => {
-    console.log("We are checking out")
     navigate('/shop/orders/checkout')
 }
   
   const logout = () => {
     storeageUtil.clearStorage()
+    setToken(null)
+    setUsername(null)
     navigate("/shop")
   }
 

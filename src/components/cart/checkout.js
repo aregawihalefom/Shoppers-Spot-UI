@@ -17,7 +17,6 @@ function CheckoutContainer() {
     const [useShippingAsBilling, setShippingAsBilling] = useState(false);
     const handleUseShippingAsBilling = () => {
         setShippingAsBilling((val) => !val)
-        console.log(useShippingAsBilling)
     }
 
     const [billingState, setBillingState] = useState({})
@@ -29,7 +28,6 @@ function CheckoutContainer() {
             ...shippingState,
             [key]: value,
         });
-        console.log(shippingState)
     }
 
     const handleBillingForm = (key, value) => {
@@ -54,7 +52,7 @@ function CheckoutContainer() {
         api.post("/orders", payload)
         .then(result =>{
            navigate("/shop/orders")
-           storeageUtil.clearStorage()
+           storeageUtil.removeItem("products")
         })
 
     }

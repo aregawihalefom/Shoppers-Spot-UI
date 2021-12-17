@@ -1,29 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch } from "react-redux";
-import { useNavigate } from 'react-router-dom'
 import { api } from '../../services/API'
 import { storeageUtil } from '../../store/localStorage/local'
 import SellerListTable from './SellerListTable';
 
 
 function ListSellers() {
-
-    // const [values, setValues] = useState({})
-    // const dispatch = useDispatch()
-    // const navigate = useNavigate()
-
     const [sellers, setSellers] = useState([])
-
-
-    const [products, setProducts] = useState([])
-
     useEffect(() => {
         // Get the details from storage
         api.setHeader(storeageUtil.getItem("token"))
         api.get("/users/sellers")
             .then((result) => {
-                setProducts(result.data)
-                console.log(result.data)
+                setSellers(result.data)
             })
     }, [])
 

@@ -3,9 +3,9 @@ import React from 'react'
 import { act } from 'react-dom/test-utils'
 
 const initialState ={
-    error:'',
-    success:'',
-    category:false
+    error:null,
+    success:null,
+    category: false
 }
 
 export const messageSlice = createSlice({
@@ -14,14 +14,14 @@ export const messageSlice = createSlice({
     initialState,
     reducers:{
         setMessages:(state , action)=>{ 
-            state.error = action.payload
-            state.success = action.payload
-            state.category = action.payload
+            state.error = action.payload.error
+            state.success = action.payload.success
+            state.category = action.payload.category
         },
         unsetMessages:(state)=>{
-            state.error = ''
-            state.success = ''
-            state.category = ''
+            state.error = null
+            state.success = null
+            state.category = null
         }
     }
 })

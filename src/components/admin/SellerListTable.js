@@ -4,7 +4,7 @@ function SellerListTable(props) {
 
     const {data} = props
     const sellers = typeof data === 'undefined' ? [] : data.seller
-    const type =  typeof data === 'undefined' ? '': data.type 
+    //const type =  typeof data === 'undefined' ? '': data.type 
 
     return (
         <div>

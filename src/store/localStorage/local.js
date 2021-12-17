@@ -16,6 +16,9 @@ class  storage{
    clearStorage = () =>{ 
      return  this.storageType.clear()
   }
+  removeItem = (key) =>{
+   return this.storageType.removeItem(key)
+  }
 
 }
 export let storeageUtil = new storage()

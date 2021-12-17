@@ -6,6 +6,7 @@ import SellerListTable from './SellerListTable';
 
 function ListSellers() {
     const [sellers, setSellers] = useState([])
+
     useEffect(() => {
         // Get the details from storage
         api.setHeader(storeageUtil.getItem("token"))

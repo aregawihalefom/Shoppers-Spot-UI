@@ -20,17 +20,19 @@ const Header = () => {
   counter = cartData == null ? counter : cartData.length
 
   //The following data is from redux store
-  const dispatch = useDispatch()
-  const cartDataStore = useSelector(state => state.cart)
-
+  const token = storeageUtil.getItem(APP_CONFIG.data.TOKEN_NAME)
+  const username = storeageUtil.getItem(APP_CONFIG.data.USER_NAME)
   // The
-  const [token, setToken] = useState(null)
-  const [username, setUsername] = useState(null);
+  // const [token, setToken] = useState(userData.token)
+  // const [username, setUsername] = useState(userData.username);
 
-  useEffect(() => {
-    setToken(storeageUtil.getItem(APP_CONFIG.data.TOKEN_NAME))
-    setUsername(storeageUtil.getItem(APP_CONFIG.data.USER_NAME))
-  }, [token, username])
+//  useEffect(()=>{
+//   // setUsername(userData.username  == '' ? storeageUtil.getItem(APP_CONFIG.data.USER_NAME) : userData.username)
+//   // setToken(userData.token =='' ? storeageUtil.getItem(APP_CONFIG.data.TOKEN_NAME) : userData.token)
+//   //setToken(userData.token)
+//   //setUsername(userData.username)
+//   //console.log("Token on the header", token)
+//  }, [])
 
 
   const guest = () => {
@@ -60,8 +62,7 @@ const Header = () => {
   const logout = () => {
     storeageUtil.clearStorage()
     api.deleteAuth()
-    setToken(null)
-    setUsername(null)
+    console.log(api)
     navigate("/shop")
   }
 
@@ -139,6 +140,7 @@ const Header = () => {
                 </Dropdown.Menu>
               </Dropdown>
             </div>
+
             {
               token == null ? guest() : loggedIn()
             }

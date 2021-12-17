@@ -7,6 +7,7 @@ import { APP_CONFIG, paymentMethods } from '../../services/Constants'
 import { storeageUtil } from '../../store/localStorage/local'
 import { setMessages } from '../../store/Redux/MessageReducers'
 import {useParams} from 'react-router'
+import { storeUserDetails } from '../../store/Redux/userReducer';
 
 
 function AddProduct() {
@@ -18,8 +19,8 @@ function AddProduct() {
     const [products, setProducts] = useState([])
 
     useEffect(() => {
-        // Get the details from storage
-        api.setHeader(storeageUtil.getItem("token"))
+        api.deleteAuth()
+        console.log(api)
         api.get("/products")
             .then((result) => {
                 setProducts(result.data)
@@ -58,12 +59,6 @@ function AddProduct() {
 
     const showDetails = (id) => {
         navigate('/shop/products/detail/'+id)
-    }
-
-    const [editMode, setEditMode] = useState(false)
-    const activateEditMode = () => {
-        setEditMode((editMode) => !editMode)
-        alert(editMode)
     }
 
     const deleteProduct = (id) => {

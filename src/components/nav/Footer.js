@@ -51,7 +51,7 @@ const Footer = () => {
                     to="/"
                     className="text-decoration-none text-white stretched-link"
                   >
-                    Super Market
+                   Entertainement
                   </Link>
                 </li>
                 <li className="list-group-item bg-dark text-white border-light">
@@ -59,7 +59,7 @@ const Footer = () => {
                     to="/"
                     className="text-decoration-none text-white stretched-link"
                   >
-                    Travel Cards
+                    Travel
                   </Link>
                 </li>
               </ul>

@@ -72,9 +72,9 @@ function SingleProduct(props) {
     }
 
     return (
-        <div className="col-md-4">
+        <div className="col-sm-3">
             <div className="card">
-                <img src={product.banner} onClick={()=>showDetails(product.id)} className="card-img-top" alt="..."></img>
+                <img src={product.banner} onClick={()=>showDetails(product.id)} className="img-thumbnail img-responsive" alt="..."/>
                 <span className="badge bg-success position-absolute mt-2 ml-2">New</span>
                 <div className="card-body"><h6 className="card-subtitle mb-2">
                     <a className="text-decoration-none" href="/product/detail">{product.name}</a>

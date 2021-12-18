@@ -24,11 +24,8 @@ function ProductListView() {
     <div>
       <div className="container mt-5">
         <div className="row">
-
-          <div className="col-md-3">
-          </div>
-          <div className="col-md-9">
-            <div className="row g-3">
+          <div className="col-sm">
+            <div className="row">
               {
                 data.map((product)=>{
                   return( <SingleProduct  key = {product.id} product = {product}/>

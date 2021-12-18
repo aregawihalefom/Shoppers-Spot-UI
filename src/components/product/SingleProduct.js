@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+
+
+import { useDispatch } from 'react-redux'
 import {useNavigate } from "react-router-dom";
 import { storeageUtil } from '../../store/localStorage/local'
 import { APP_CONFIG } from '../../services/Constants'
 import { addingItem } from '../../store/Redux/CartReducers'
-import store from '../../store/Redux/store'
+import { api } from '../../services/API'
+import { setMessages } from '../../store/Redux/MessageReducers'
 
 function SingleProduct(props) {
     const { product } = props

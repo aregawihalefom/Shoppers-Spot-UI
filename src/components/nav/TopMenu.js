@@ -8,8 +8,8 @@ const TopMenu = () => {
 
   const role = storeageUtil.getItem(APP_CONFIG.data.ROLE) ||''
   const [filteredRoutes, setFilteredRoutes] = useState([])
+  
   useEffect(() => {  
-   console.log(role.toLowerCase())
     const filtered = routes.filter(route => {
       if (route.roles.includes(role.toLowerCase())) {
         return true

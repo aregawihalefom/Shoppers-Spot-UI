@@ -12,6 +12,7 @@ import CheckoutContainer from '../cart/checkout';
 import OrderContainer from '../cart/OrderContainer';
 import OrderDetails from '../cart/OrderDetails';
 import OrderContainerUser from '../cart/OrderContainerUser';
+import ListReview from '../admin/ListReview';
 
 const routes = (loggedIn) => [
     {
@@ -29,7 +30,8 @@ const routes = (loggedIn) => [
         // { path: 'add-buyer', element: <AddBuyer /> },
         // { path: 'add-seller', element: <AddSeller /> },
 
-        { path: 'user/orders', element: <OrderContainerUser /> },
+        { path: 'reviews', element: <ListReview /> },
+
 
         // { path: 'add-product', element: <AddProduct /> },
         // { path: 'add-admin', element: <AddAdmin /> },

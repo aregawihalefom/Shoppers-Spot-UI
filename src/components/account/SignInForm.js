@@ -22,7 +22,6 @@ function SignInForm() {
     });
   }
 
-
   const loginEvent = () => {
     api.deleteAuth()
     api.post("/auth/signin", values)

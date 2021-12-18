@@ -19,8 +19,7 @@ const Header = () => {
 
   //The following data is from redux store
   const dispatch = useDispatch()
-  const cartDataStore  = useSelector(state => state.cart)
-  const userDataStore = useSelector(state => state.user)
+
   const localToken = storeageUtil.getItem(APP_CONFIG.data.TOKEN_NAME);
   const localUsername = storeageUtil.getItem(APP_CONFIG.data.USER_NAME);
 
@@ -43,7 +42,6 @@ const Header = () => {
   }
 
   const navigate = useNavigate()
-
   const checkout = () => {
     navigate('/shop/orders/checkout')
 }

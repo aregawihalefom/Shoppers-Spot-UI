@@ -50,13 +50,11 @@ function CheckoutContainer() {
         var payload = {billingAddress : billingState , shippingAddress: shippingState , products : cartData, username: username, cardPayment:cardPaymentState}
         api.post("/orders", payload)
         .then(result =>{
-           navigate("/shop/orders")
-           storeageUtil.removeItem("products")
+            storeageUtil.removeItem("products")
+           navigate("/shop/user/orders")
         })
 
     }
-
-
     return (
         <div className="row">
             <div className="col-md-6">

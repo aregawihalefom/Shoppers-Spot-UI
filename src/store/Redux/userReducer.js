@@ -15,8 +15,6 @@ export const userSlice = createSlice({
            state.token = action.payload.token
            state.roles = action.payload.roles[0]
            state.id = action.payload.id
-
-           console.log("username", state.token)
        },
        reSetUserDetails:(state) => {
            state.username = ''

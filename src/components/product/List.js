@@ -26,10 +26,6 @@ function ProductListView() {
         <div className="row">
 
           <div className="col-md-3">
-
-            <FilterCategory />
-            <FilterPrice />
-
           </div>
           <div className="col-md-9">
             <div className="row g-3">

@@ -5,7 +5,7 @@ import { api } from '../../services/API'
 import { storeageUtil } from '../../store/localStorage/local'
 import { APP_CONFIG } from '../../services/Constants';
 
-function OrderContainer() {
+function OrderContainerUser() {
 
     //const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -17,10 +17,10 @@ function OrderContainer() {
     const [changes , setchanges] = useState(false)
 
     const [orders, setOrders] = useState([])
-
+    
     useEffect(() => {
         api.setHeader(storeageUtil.getItem("token"))
-        api.get("/orders")
+        api.get("/orders/users/" + id)
             .then((result) => {
                 setOrders(result.data)
             })
@@ -31,13 +31,10 @@ function OrderContainer() {
         api.delete("/orders/" + id)
             .then(res => 
                 {
-                    console.log(res.data)
                     setchanges(previous => !previous)
                 })
 
     }
-
-
     const showDetails = (id) => {
         navigate("/shop/orders/myorders/detail/" + id)
     }
@@ -54,7 +51,9 @@ function OrderContainer() {
                 <li className="nav-item" role="presentation">
                     <button className="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Cancelled</button>
                 </li>
-              
+                <li className="nav-item" role="presentation">
+                    <button className="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Order History</button>
+                </li>
             </ul>
             <div className="tab-content" id="myTabContent">
                 <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -94,8 +93,6 @@ function OrderContainer() {
                                                     </div>
                                                 </td>
                                             </tr>
-                                                
-                                             
                                             )
                                         })
                                 }
@@ -149,10 +146,53 @@ function OrderContainer() {
 
 
                 </div>
-              
+                <div className="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                <table className="table table-hover table-striped table-condensed">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Order Date</th>
+                                <th scope="col">Items</th>
+                                <th scope="col">Total Price</th>
+                                <th scope="col"> Order Status </th>
+                                <th scope="col"> Delivered on </th>
+                    
+                            </tr>
+                        </thead>
+                        {
+
+                            <tbody>
+                                {
+                                    orders == null ? '' :
+                                        orders.map((order) => {
+                                            return ( 
+                                                order.orderStatus.name !=='ORDER_SHIPPED' ? '' : 
+                                                <tr key={order.id}>
+                                                <td>{order.id}</td>
+                                                <td>{order.orderDate}</td>
+                                                <td>{order.products.map((product => {
+                                                    return (<p key={product.id}>{product.name} , Quantity : {product.quantity}</p>)
+                                                }))}</td>
+
+                                                <td>${order.totalPrice}</td>
+                                                <td className="text-success">Delivered</td>
+
+                                                <td>{order.statusUpdateAt}</td>
+
+                                                
+                                            </tr>
+                                                
+                                             
+                                            )
+                                        })
+                                }
+
+                            </tbody>}
+                    </table>
+                </div>
             </div>
         </div>
 
     )
 }
-export default OrderContainer
+export default OrderContainerUser

@@ -8,9 +8,7 @@ import { APP_CONFIG } from "../../services/Constants";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
-import { useSelector, useDispatch } from 'react-redux'
-import { api } from "../../services/API";
-
+import {useSelector, useDispatch} from 'react-redux'
 
 const Header = () => {
 
@@ -20,20 +18,11 @@ const Header = () => {
   counter = cartData == null ? counter : cartData.length
 
   //The following data is from redux store
-  const token = storeageUtil.getItem(APP_CONFIG.data.TOKEN_NAME)
-  const username = storeageUtil.getItem(APP_CONFIG.data.USER_NAME)
-  // The
-  // const [token, setToken] = useState(userData.token)
-  // const [username, setUsername] = useState(userData.username);
-
-//  useEffect(()=>{
-//   // setUsername(userData.username  == '' ? storeageUtil.getItem(APP_CONFIG.data.USER_NAME) : userData.username)
-//   // setToken(userData.token =='' ? storeageUtil.getItem(APP_CONFIG.data.TOKEN_NAME) : userData.token)
-//   //setToken(userData.token)
-//   //setUsername(userData.username)
-//   //console.log("Token on the header", token)
-//  }, [])
-
+  const dispatch = useDispatch()
+  const cartDataStore  = useSelector(state => state.cart)
+  const userDataStore = useSelector(state => state.user)
+  const localToken = storeageUtil.getItem(APP_CONFIG.data.TOKEN_NAME);
+  const localUsername = storeageUtil.getItem(APP_CONFIG.data.USER_NAME);
 
   const guest = () => {
     return (
@@ -57,13 +46,11 @@ const Header = () => {
 
   const checkout = () => {
     navigate('/shop/orders/checkout')
-  }
-
+}
+  
   const logout = () => {
     storeageUtil.clearStorage()
-    api.deleteAuth()
-    console.log(api)
-    navigate("/shop")
+    navigate("/login")
   }
 
   const loggedIn = () => {
@@ -73,12 +60,16 @@ const Header = () => {
         <div className="row">
 
           <div className="col-6 ">
-            ({capitalize(username)})
-            <FontAwesomeIcon icon={solid('user')} size="1x" className="text-primary" />
+
+            {localUsername === null ? '' :
+              <span>({ capitalize(localUsername)})</span>
+             
+              }
+            <FontAwesomeIcon icon={solid('user')} size="2x" className="text-primary" />
           </div>
 
           <div className="col-6">
-            <FontAwesomeIcon icon={solid('power-off')} onClick={logout} size="1x" className="text-danger" />
+            <FontAwesomeIcon icon={solid('power-off')} onClick={logout} size="2x" className="text-danger" />
           </div>
 
         </div>
@@ -123,26 +114,24 @@ const Header = () => {
                       {
                         counter == 0 ? 'Your cart is empty' : <div>
                           {cartData.map((product) =>
-                            <div key={product.id}>
+                            <div key= {product.id}>
                               <h5 className="card-title">{product.name}</h5>
                               <p className="card-text">Quantity : {product.quantity}</p>
                               <p className="card-text">Price : {product.price}</p>
-                              <hr />
+                              <hr/>
                             </div>
                           )}
                           <button className="btn btn-success" onClick={checkout}>Checkout</button>
                         </div>
                       }
 
-
-                    </div>
+                   </div>
                   </div>
                 </Dropdown.Menu>
               </Dropdown>
             </div>
-
             {
-              token == null ? guest() : loggedIn()
+              localToken == null ? guest() : loggedIn()
             }
           </div>
         </div>

@@ -11,6 +11,7 @@ import { Navigate } from 'react-router';
 import CheckoutContainer from '../cart/checkout';
 import OrderContainer from '../cart/OrderContainer';
 import OrderDetails from '../cart/OrderDetails';
+import OrderContainerUser from '../cart/OrderContainerUser';
 
 const routes = (loggedIn) => [
     {
@@ -27,6 +28,9 @@ const routes = (loggedIn) => [
         { path: 'orders/myorders/detail/:id', element: <OrderDetails /> },
         // { path: 'add-buyer', element: <AddBuyer /> },
         // { path: 'add-seller', element: <AddSeller /> },
+
+        { path: 'user/orders', element: <OrderContainerUser /> },
+
         // { path: 'add-product', element: <AddProduct /> },
         // { path: 'add-admin', element: <AddAdmin /> },
         { path: '', element: <Navigate to="/shop/home" /> }

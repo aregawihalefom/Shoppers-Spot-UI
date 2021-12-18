@@ -7,7 +7,6 @@ import { APP_CONFIG, paymentMethods } from '../../services/Constants'
 import { storeageUtil } from '../../store/localStorage/local'
 import { setMessages } from '../../store/Redux/MessageReducers'
 import {useParams} from 'react-router'
-import { storeUserDetails } from '../../store/Redux/userReducer';
 
 
 function AddProduct() {
@@ -19,8 +18,8 @@ function AddProduct() {
     const [products, setProducts] = useState([])
 
     useEffect(() => {
-        api.deleteAuth()
-        console.log(api)
+        // Get the details from storage
+        api.setHeader(storeageUtil.getItem("token"))
         api.get("/products")
             .then((result) => {
                 setProducts(result.data)
@@ -41,11 +40,11 @@ function AddProduct() {
         let message = {}
         if (result.status === 200) {
             storeageUtil.setItem("user", JSON.stringify(result.data))
-            message = { success: 'User Successfully registered ', error: '', category: true }
+            message = { message: 'User Successfully registered ', type: true }
             dispatch(setMessages(message))
             navigate("/")
         } else {
-            const message = { success: '', error: "Error occured: " + result.status, category: false }
+            const message = {  message: "Error occured: " + result.status, type: false }
             dispatch(setMessages(message))
         }
     }
@@ -59,6 +58,12 @@ function AddProduct() {
 
     const showDetails = (id) => {
         navigate('/shop/products/detail/'+id)
+    }
+
+    const [editMode, setEditMode] = useState(false)
+    const activateEditMode = () => {
+        setEditMode((editMode) => !editMode)
+        alert(editMode)
     }
 
     const deleteProduct = (id) => {

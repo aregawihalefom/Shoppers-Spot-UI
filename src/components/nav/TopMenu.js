@@ -8,12 +8,11 @@ const TopMenu = () => {
 
   const role = storeageUtil.getItem(APP_CONFIG.data.ROLE) ||''
   const [filteredRoutes, setFilteredRoutes] = useState([])
-
   useEffect(() => {  
+   console.log(role.toLowerCase())
     const filtered = routes.filter(route => {
       if (route.roles.includes(role.toLowerCase())) {
-        const metaName = route.path.split('/').slice(-1)[0]
-        return true //routeAccess[user.roles[0].toLowerCase()].includes(metaName)
+        return true
       }
       return false
     })
@@ -29,7 +28,6 @@ const TopMenu = () => {
               {
                 role == null ? '' : <ul className="navbar-nav">
                   {filteredRoutes.map(route => {
-
                     return (
                       < div key={route.id}>
                         <li className="nav-item" key={route.id}>

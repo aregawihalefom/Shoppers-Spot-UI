@@ -13,7 +13,6 @@ function OrderDetails() {
         api.get("/orders/" + param.id)
             .then(result => {
                 setOrderState(result.data)
-                console.log(result.data)
             })
     }, [])
 
